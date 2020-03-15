@@ -11,68 +11,49 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_can_start_deck_and_retrieve_it_later(self):
+    def test_can_sign_up_as_volunteer(self):
 
-        # Edith has heard about a new flashcard management
-        # tool. She goes to check out its homepage.
+        # Edith is immune from Coronavirus and wants to volunteer
+        # for ImmuneCorps. She goes to check out its homepage.
         self.browser.get('http://localhost:8000')
 
-        # She notices the page title and header mention flashcards.
-        self.assertIn('Flashcard', self.browser.title)
+        # She notices the page title and header mention ImmuneCorps.
+        self.assertIn('ImmuneCorps', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Flashcard', header_text)
+        self.assertIn('ImmuneCorps', header_text)
 
-        # She sees boxes to to add a new flashcard Q and A. She clicks on the
-        # question box.
-        qinputbox = self.browser.find_element_by_id('id_new_q')
-        self.assertEqual(
-            qinputbox.get_attribute('placeholder'),
-            'Enter a question'
-        )
-
-        # She types in "What is the capital of Manitoba?" in the question text
-        # box
-        qinputbox.send_keys('What is the capital of Manitoba?')
-
-        # She clicks on the answer box
-        ainputbox = self.browser.find_element_by_id('id_new_a')
-        self.assertEqual(
-            ainputbox.get_attribute('placeholder'),
-            'Enter an answer'
-        )
-
-        # She types in "Winnipeg" in the answer text box.
-        ainputbox.send_keys('Winnipeg')
-
-        # She clicks a button to add the flashcard she entered. The page updates and
-        # lists the flashcard she entered.
-        submit_flashcard_button = self.browser.find_element_by_id('id_add_flashcard_button')
-        submit_flashcard_button.click()
+        # She sees a box to click to join ImmuneCorps. She clicks on the
+        # box.
+        join_button = self.browser.find_element_by_id('id_join_immunecorps')
+        join_button.click()
         time.sleep(1)
 
-        table = self.browser.find_element_by_id('id_deck_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == 'What is the capital of Manitoba?' for row in rows),
-            'New question in flashcard did not appear in table'
+        # She sees a place to enter in her email to join, enters in
+        # her email
+        emailinputbox = self.browser.find_element_by_id('email')
+        self.assertEqual(
+            emailinputbox.get_attribute('placeholder'),
+            'Enter your email'
         )
-        self.assertTrue(
-            any(row.text == 'Winnipeg' for row in rows),
-            'New answer in flashcard did not appear in table'
-        )
+        emailinputbox.send_keys('test@example.com')
 
-        # There is still a text box inviting her to add another item. She enters in
-        # "What is the capital of Canada" into the question and "Ottawa" into the answer
-        # box.
+        # She clicks the box to submit her information
+        submit_button = self.browser.find_element_by_id('id_submit')
+        submit_button.click()
+        time.sleep(1)
+
+        # The page updates and she sees a message to check
+        # her email to confirm her login.
+        message_text = self.browser.find_element_by_id('check_email_msg').text
+        self.assertIn('Thank you for signing up for ImmuneCorps! Please check your Email', header_text)
+
         self.fail('Finish the test!')
 
-        # She clicks a button to add the flashcard she entered. The page updates and
-        # lists the flashcard she entered along with the first one.
+        # She visits the homepage again and tries to submit her information
+        # again.
 
-        # Edith wonders whether the site will remember her flashcards. She
-        # sees the site generated a unique URL for her.
-
-        # She visits the URl - her to-do list is still there.
+        # The application does not allow her to enter in the information 
+        # a second time.
 
         # Satisfied, she goes back to sleep.
 
