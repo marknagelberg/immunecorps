@@ -4,7 +4,7 @@ People infected with COVID-19 [likely become immune](https://twitter.com/florian
 
 Immune people need a way to join an [ImmuneCorps](https://twitter.com/naval/status/1238610618770313216): an army of immune good samaritans that want to help those in need. Health authorities will need a way to track these people and enlist their help. Citizens need a way of verifying whether someone that says they are immune is in fact immune. Citizens also should have a way of sending requests to immune volunteers.
 
-ImmuneCorps is intended to help solve these problems. It will be a web application that Health Authorities can deploy to solve these problems. 
+ImmuneCorps will be a web application that Health Authorities can deploy to solve these problems. 
 
 ## Proposed Features / Functionality
 
