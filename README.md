@@ -16,7 +16,7 @@ ImmuneCorps will have three main groups of users:
 2) **ImmuneCorps Volunteers** (people that are immune to Coronavirus) and 
 3) **Citizens** needing help from ImmuneCorps Volunteers or needing to verify someone that says they are immune is immune. 
 
-The application should be able to perform the following core tasks:
+The application should have the following core features:
 
 -  Health Authorities have their IT staff install ImmuneCorps using their own servers / databases and serve it to a public facing website, with their personalized Government logo / name. This should be relatively easy / painless and there should be good documentation about how to do it. 
 
