@@ -28,7 +28,7 @@ The application should be able to perform the following core tasks:
 
 -  The Health Authority can search and filter ImmuneCorps volunteers according to the information they have asked from them. They should also be able to export information to popular usable formats like Excel or CSV.
 
--  A public facing API can confirm whether someone is a verified ImmuneCorps volunteer. This single API function would take two inputs: the URL of the Health Authority’s ImmuneCorps website, and some ID for the person that they are trying to verify as a member of ImmuneCorps (perhaps an email address or some temporary verification code). For example, the citizen can enter in an email or code of someone claiming to be a ImmuneCorps volunteer and they receive a Yes/No response back. 
+-  A public facing API can confirm whether someone is a verified ImmuneCorps volunteer. 
 
 -  Citizens can submit requests to ImmuneCorps to have an ImmuneCorps volunteer help them. 
 
