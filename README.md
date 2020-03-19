@@ -32,6 +32,15 @@ The application should have the following core features:
 
 -  Citizens can submit requests to ImmuneCorps to have an ImmuneCorps volunteer help them. 
 
+## Contributing
+
+Contributors are welcome. All of the work for the project is tracked through
+the GitHub Issues. Feel free to claim any of these issues.
+
+You can also contribute by submitting feature requests through Issues.
+This input would be particularly valuable if you are a 
+potential end-user working in a Health Authority.
+
 ## Technologies
 
 ImmuneCorps is developed in Python, using the Django web framework. 
