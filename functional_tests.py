@@ -57,6 +57,36 @@ class NewVisitorTest(unittest.TestCase):
 
         # Satisfied, she goes back to sleep.
 
+
+class HealthAuthorityAdminTest(unittest.TestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_add_reviewers(self):
+
+        # Bob the Health Authority IT Admin guy just installed ImmuneCorps.
+        # He wants to add Dr. Johnson in his organization to have access
+        # to ImmuneCorps so he can add data about immune patients,
+        # and verify volunteers as immune.
+
+        # Bob goes to the /admin path as specified in the installation docs
+
+        # Bob enters in his user / pass, logs in and sees he is in the Admin
+        # Console
+
+        # He sees a link to manage Health Authority users and clicks
+
+        # He adds Dr. Johnson's information and submits it
+
+        # He navigates back to the main admin console page. He goes back
+        # to the Health Authority user page and still sees Dr. Johnson's
+        # information there.
+
+
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
 
