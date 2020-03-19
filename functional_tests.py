@@ -73,6 +73,7 @@ class HealthAuthorityAdminTest(unittest.TestCase):
         # to ImmuneCorps so he can add data about immune patients,
         # and verify volunteers as immune.
 
+        self.fail('Finish the test!')
         # Bob goes to the /admin path as specified in the installation docs
 
         # Bob enters in his user / pass, logs in and sees he is in the Admin
