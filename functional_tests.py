@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
+
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
