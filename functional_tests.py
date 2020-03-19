@@ -59,7 +59,7 @@ class NewVisitorTest(unittest.TestCase):
         # Satisfied, she goes back to sleep.
 
 
-class HealthAuthorityAdminTest(unittest.TestCase):
+class NewHealthAuthorityAdminTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -70,7 +70,8 @@ class HealthAuthorityAdminTest(unittest.TestCase):
     def test_can_add_reviewers(self):
 
         # Bob the Health Authority IT Admin guy just installed ImmuneCorps.
-        # He wants to add Dr. Johnson in his organization to have access
+        # He wants to add immunity tracking staff Claire
+        # in his organization to have access
         # to ImmuneCorps so he can add data about immune patients,
         # and verify volunteers as immune.
 
@@ -82,11 +83,72 @@ class HealthAuthorityAdminTest(unittest.TestCase):
 
         # He sees a link to manage Health Authority users and clicks
 
-        # He adds Dr. Johnson's information and submits it
+        # He adds Claire's information and submits it
 
         # He navigates back to the main admin console page. He goes back
-        # to the Health Authority user page and still sees Dr. Johnson's
+        # to the Health Authority user page and still sees Claire's
         # information there.
+
+
+class NewHealthAuthorityStaffTest(unittest.TestCase):
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_verify_applicant_immunity(self):
+
+        self.fail('Finish the test!')
+        # Immunity Tracking Staff Claire logs into the staff portal
+
+        # She sees two new applicants wanting to be Immune-Verified
+
+        # She clicks on "Browse Immune Records" to check to see whether
+        # they are recorded as immune.
+
+        # She sees the first person in the list of immune and clicks
+        # button to link the applicant to the immune record and mark them as 
+        # immune.
+
+        # She goes back to the page of immune applicants and sees the other
+        # applicant record there. She clicks "Browse Immune Records"
+
+        # She can't find the record for this person, so she marks them as
+        # unverified.
+
+    def test_can_add_immunity_records(self):
+
+        self.fail('Finish the test!')
+        # Immunity Tracking Staff Claire logs into the staff portal
+
+        # She clicks a button to browse the immune inventory
+
+        # Once there, she clicks the button to add a new immune person to the 
+        # inventory
+
+        # She enters in the person's information and clicks submit
+
+        # She sees the record of the newly added immune person
+
+    def test_can_add_immunity_records_via_api(self):
+
+        self.fail('Finish the test!')
+        # The Health Authority has requested that Mark, a software engineer
+        # from the IT department, add existing records of the immune that
+        # are currently stored in an Excel file. Luckily he can do this
+        # quickly through the API
+
+        # He logs into his staff portal
+
+        # He clicks on the API button
+
+        # He clicks on the button to generate an API key
+
+        # He makes a request using the API key to add a new immune record
+
+        # He make a request using the API to get the immune record just added
 
 
 if __name__ == '__main__':
