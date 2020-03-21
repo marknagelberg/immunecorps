@@ -14,3 +14,9 @@ class JoinPageTest(TestCase):
         response = self.client.get('/join-immunecorps')
         self.assertTemplateUsed(response, 'volunteers/join-immunecorps.html')
 
+
+class CheckEmailPageTest(TestCase):
+
+    def test_uses_check_emailtemplate(self):
+        response = self.client.get('/check-email')
+        self.assertTemplateUsed(response, 'volunteers/check-email.html')

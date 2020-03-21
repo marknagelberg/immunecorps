@@ -46,7 +46,8 @@ class NewVisitorTest(unittest.TestCase):
         # The page updates and she sees a message to check
         # her email to confirm her login.
         message_text = self.browser.find_element_by_id('check_email_msg').text
-        self.assertIn('Thank you for signing up for ImmuneCorps! Please check your Email', header_text)
+        self.assertIn('Thank you for signing up for ImmuneCorps! ' + \
+                'Confirmation email sent to test@example.com', message_text)
 
         self.fail('Finish the test!')
 
@@ -59,7 +60,7 @@ class NewVisitorTest(unittest.TestCase):
         # Satisfied, she goes back to sleep.
 
 
-class NewHealthAuthorityAdminTest(unittest.TestCase):
+class HealthAuthorityAdminTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -70,8 +71,7 @@ class NewHealthAuthorityAdminTest(unittest.TestCase):
     def test_can_add_reviewers(self):
 
         # Bob the Health Authority IT Admin guy just installed ImmuneCorps.
-        # He wants to add immunity tracking staff Claire
-        # in his organization to have access
+        # He wants to add Dr. Johnson in his organization to have access
         # to ImmuneCorps so he can add data about immune patients,
         # and verify volunteers as immune.
 
@@ -83,10 +83,10 @@ class NewHealthAuthorityAdminTest(unittest.TestCase):
 
         # He sees a link to manage Health Authority users and clicks
 
-        # He adds Claire's information and submits it
+        # He adds Dr. Johnson's information and submits it
 
         # He navigates back to the main admin console page. He goes back
-        # to the Health Authority user page and still sees Claire's
+        # to the Health Authority user page and still sees Dr. Johnson's
         # information there.
 
 

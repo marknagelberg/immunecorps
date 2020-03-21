@@ -19,4 +19,5 @@ from volunteers import views
 urlpatterns = [
     path('', views.home_page, name='home'),
     path('join-immunecorps', views.join_immunecorps, name='home'),
+    path('check-email', views.check_email, name='home'),
 ]

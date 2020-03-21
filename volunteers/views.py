@@ -7,3 +7,7 @@ def home_page(request):
 
 def join_immunecorps(request):
     return render(request, 'volunteers/join-immunecorps.html')
+
+
+def check_email(request):
+    return render(request, 'volunteers/check-email.html')
