@@ -49,15 +49,30 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('Thank you for signing up for ImmuneCorps! ' + \
                 'Confirmation email sent to test@example.com', message_text)
 
-        self.fail('Finish the test!')
 
         # She visits the homepage again and tries to submit her information
         # again.
+        self.browser.get('http://localhost:8000')
+        join_button = self.browser.find_element_by_id('id_join_immunecorps')
+        join_button.click()
+        time.sleep(1)
+        emailinputbox = self.browser.find_element_by_id('email')
+        self.assertEqual(
+            emailinputbox.get_attribute('placeholder'),
+            'Enter your email'
+        )
+        emailinputbox.send_keys('test@example.com')
+        submit_button = self.browser.find_element_by_id('id_submit')
+        submit_button.click()
+        time.sleep(1)
 
         # The application does not allow her to enter in the information 
         # a second time.
+        error_text = self.browser.find_element_by_id('already_applied_error').text
+        self.assertIn('Error: You have already applied - cannot apply more than once', \
+                error_text)
 
-        # Satisfied, she goes back to sleep.
+        # She leaves
 
 
 class HealthAuthorityAdminTest(unittest.TestCase):
