@@ -1,10 +1,10 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -16,7 +16,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # Edith is immune from Coronavirus and wants to volunteer
         # for ImmuneCorps. She goes to check out its homepage.
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention ImmuneCorps.
         self.assertIn('ImmuneCorps', self.browser.title)
@@ -46,13 +46,12 @@ class NewVisitorTest(unittest.TestCase):
         # The page updates and she sees a message to check
         # her email to confirm her login.
         message_text = self.browser.find_element_by_id('check_email_msg').text
-        self.assertIn('Thank you for signing up for ImmuneCorps! ' + \
-                'Confirmation email sent to test@example.com', message_text)
+        self.assertIn('Thank you for signing up for ImmuneCorps! ', message_text)
 
 
         # She visits the homepage again and tries to submit her information
         # again.
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         join_button = self.browser.find_element_by_id('id_join_immunecorps')
         join_button.click()
         time.sleep(1)
@@ -75,7 +74,7 @@ class NewVisitorTest(unittest.TestCase):
         # She leaves
 
 
-class HealthAuthorityAdminTest(unittest.TestCase):
+class HealthAuthorityAdminTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -105,7 +104,7 @@ class HealthAuthorityAdminTest(unittest.TestCase):
         # information there.
 
 
-class NewHealthAuthorityStaffTest(unittest.TestCase):
+class NewHealthAuthorityStaffTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -164,8 +163,4 @@ class NewHealthAuthorityStaffTest(unittest.TestCase):
         # He makes a request using the API key to add a new immune record
 
         # He make a request using the API to get the immune record just added
-
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
 
