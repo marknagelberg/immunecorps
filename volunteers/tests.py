@@ -18,8 +18,25 @@ class JoinPageTest(TestCase):
     def test_can_save_a_POST_request(self):
         response = self.client.post('/join-immunecorps',
                 data={'email':'emailtest@example.com'})
-        self.assertIn('emailtest@example.com', response.content.decode())
-        self.assertTemplateUsed(response, 'volunteers/check-email.html')
+        new_volunteer = Volunteer.objects.first()
+        self.assertEqual(new_volunteer.email, 'emailtest@example.com')
+
+    def test_redirects_after_POST(self):
+        response = self.client.post('/join-immunecorps',
+                data={'email':'emailtest@example.com'})
+        self.assertRedirects(response, '/check-email')
+
+    def test_only_save_email_when_necessary(self):
+        self.client.get('/join-immunecorps')
+        self.assertEqual(Volunteer.objects.count(), 0)
+
+    def test_cannot_POST_duplicate_email(self):
+        pass
+        #TODO
+        #Volunteer.objects.create(email='emailtest@example.com')
+        #response = self.client.post('/join-immunecorps',
+                #data={'email':'emailtest@example.com'})
+
 
 
 class CheckEmailPageTest(TestCase):

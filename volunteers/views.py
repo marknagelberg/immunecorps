@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from volunteers.models import Volunteer
 
 
 def home_page(request):
@@ -7,8 +8,9 @@ def home_page(request):
 
 def join_immunecorps(request):
     if request.method == 'POST':
-        email = request.POST.get('email', '')
-        return redirect('views.check_email')
+        new_volunteer_email = request.POST['email']
+        Volunteer.objects.create(email=new_volunteer_email)
+        return redirect('/check-email')
     return render(request, 'volunteers/join-immunecorps.html')
 
 
