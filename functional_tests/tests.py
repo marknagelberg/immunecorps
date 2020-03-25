@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
 import time
 
 
@@ -27,7 +28,6 @@ class NewVisitorTest(LiveServerTestCase):
         # box.
         join_button = self.browser.find_element_by_id('id_join_immunecorps')
         join_button.click()
-        time.sleep(1)
 
         # She sees a place to enter in her email to join, enters in
         # her email
@@ -41,37 +41,49 @@ class NewVisitorTest(LiveServerTestCase):
         # She clicks the box to submit her information
         submit_button = self.browser.find_element_by_id('id_submit')
         submit_button.click()
-        time.sleep(1)
 
         # The page updates and she sees a message to check
         # her email to confirm her login.
         message_text = self.browser.find_element_by_id('check_email_msg').text
         self.assertIn('Thank you for signing up for ImmuneCorps! ', message_text)
 
+        # She leaves
 
-        # She visits the homepage again and tries to submit her information
-        # again.
+    def test_multiple_volunteers_have_different_urls(self):
+
+        # Edith signs up to volunteer for ImmuneCorps
         self.browser.get(self.live_server_url)
         join_button = self.browser.find_element_by_id('id_join_immunecorps')
         join_button.click()
-        time.sleep(1)
         emailinputbox = self.browser.find_element_by_id('email')
-        self.assertEqual(
-            emailinputbox.get_attribute('placeholder'),
-            'Enter your email'
-        )
+        emailinputbox.send_keys('test@example.com')
+
+        # She clicks the box to submit her information
+        submit_button = self.browser.find_element_by_id('id_submit')
+        submit_button.click()
+
+        # She notices the page indicating she signed up has a unique URL
+        edith_volunteer_url = self.browser.current_url
+        self.assertRegex(edith_volunteer_url, '/volunteer/.+')
+
+        # Now a new user Francis comes to the site
+
+        ## Create new browser session to ensure no info from Edith
+        ## coming from cookies etc
+        self.browser.quit()
+        self.browser = webdriver.Firefox()
+
+        # Francis visits the home page and signs up
+        self.browser.get(self.live_server_url)
+        join_button = self.browser.find_element_by_id('id_join_immunecorps')
+        join_button.click()
+        emailinputbox = self.browser.find_element_by_id('email')
         emailinputbox.send_keys('test@example.com')
         submit_button = self.browser.find_element_by_id('id_submit')
         submit_button.click()
-        time.sleep(1)
-
-        # The application does not allow her to enter in the information 
-        # a second time.
-        error_text = self.browser.find_element_by_id('already_applied_error').text
-        self.assertIn('Error: You have already applied - cannot apply more than once', \
-                error_text)
-
-        # She leaves
+        francis_volunteer_url = self.browser.current_url
+        self.assertRegex(francis_volunteer_url, '/volunteer/.+')
+        self.assertNotEqual(francis_volunteer_url, edith_volunteer_url)
 
 
 class HealthAuthorityAdminTest(LiveServerTestCase):
