@@ -56,15 +56,24 @@ class NewVisitorTest(LiveServerTestCase):
         join_button = self.browser.find_element_by_id('id_join_immunecorps')
         join_button.click()
         emailinputbox = self.browser.find_element_by_id('email')
-        emailinputbox.send_keys('test@example.com')
+        emailinputbox.send_keys('edith@example.com')
 
         # She clicks the box to submit her information
         submit_button = self.browser.find_element_by_id('id_submit')
         submit_button.click()
 
+        # She logs in
+        self.browser.get(self.live_server_url)
+        login_button = self.browser.find_element_by_id('id_vlogin_immunecorps')
+        login_button.click()
+        emailinputbox = self.browser.find_element_by_id('login_email')
+        emailinputbox.send_keys('edith@example.com')
+        submit_button = self.browser.find_element_by_id('id_submit')
+        submit_button.click()
+
         # She notices the page indicating she signed up has a unique URL
         edith_volunteer_url = self.browser.current_url
-        self.assertRegex(edith_volunteer_url, '/volunteer/.+')
+        self.assertRegex(edith_volunteer_url, '/volunteers/.+')
 
         # Now a new user Francis comes to the site
 
@@ -78,11 +87,20 @@ class NewVisitorTest(LiveServerTestCase):
         join_button = self.browser.find_element_by_id('id_join_immunecorps')
         join_button.click()
         emailinputbox = self.browser.find_element_by_id('email')
-        emailinputbox.send_keys('test@example.com')
+        emailinputbox.send_keys('francis@example.com')
+        submit_button = self.browser.find_element_by_id('id_submit')
+        submit_button.click()
+
+        # He logs in
+        self.browser.get(self.live_server_url)
+        login_button = self.browser.find_element_by_id('id_vlogin_immunecorps')
+        login_button.click()
+        emailinputbox = self.browser.find_element_by_id('login_email')
+        emailinputbox.send_keys('francis@example.com')
         submit_button = self.browser.find_element_by_id('id_submit')
         submit_button.click()
         francis_volunteer_url = self.browser.current_url
-        self.assertRegex(francis_volunteer_url, '/volunteer/.+')
+        self.assertRegex(francis_volunteer_url, '/volunteers/.+')
         self.assertNotEqual(francis_volunteer_url, edith_volunteer_url)
 
 

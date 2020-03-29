@@ -16,3 +16,15 @@ def join_immunecorps(request):
 
 def check_email(request):
     return render(request, 'volunteers/check-email.html')
+
+
+def vlogin_immunecorps(request):
+    if request.method == 'POST':
+        volunteer_email = request.POST['email']
+        return redirect('/volunteers/the-only-volunteer-in-the-world/')
+    return render(request, 'volunteers/login.html')
+
+
+def volunteer_dashboard(request):
+    return render(request, 'volunteers/dashboard.html')
+

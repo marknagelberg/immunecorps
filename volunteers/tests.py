@@ -24,7 +24,9 @@ class JoinPageTest(TestCase):
     def test_redirects_after_POST(self):
         response = self.client.post('/join-immunecorps',
                 data={'email':'emailtest@example.com'})
-        self.assertRedirects(response, '/check-email')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+            '/check-email')
 
     def test_only_save_email_when_necessary(self):
         self.client.get('/join-immunecorps')
@@ -37,6 +39,26 @@ class JoinPageTest(TestCase):
         #response = self.client.post('/join-immunecorps',
                 #data={'email':'emailtest@example.com'})
 
+
+class VolunteerLoginPageTest(TestCase):
+
+    def test_uses_login_template(self):
+        response = self.client.get('/volunteer-login')
+        self.assertTemplateUsed(response, 'volunteers/login.html')
+
+    def test_redirects_after_POST(self):
+        response = self.client.post('/volunteer-login',
+                data={'email':'emailtest@example.com'})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+            '/volunteers/the-only-volunteer-in-the-world/')
+
+
+class VolunteerDashboardTest(TestCase):
+
+    def test_uses_volunteer_dashboard_page_template(self):
+        response = self.client.get('/volunteers/the-only-volunteer-in-the-world/')
+        self.assertTemplateUsed(response, 'volunteers/dashboard.html')
 
 
 class CheckEmailPageTest(TestCase):
