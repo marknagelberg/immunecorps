@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Join ImmuneCorps</title>
+    </head>
+    <body>
+        <h1>ImmuneCorps: Volunteer Login</h1>
+        <form method="POST">
+            <input placeholder="Enter your email" type="email" id="login_email" name="email">
+            {% csrf_token %}
+            <button type="submit" id="id_submit">Submit</button>
+        </form>
+    </body>
+</html>
