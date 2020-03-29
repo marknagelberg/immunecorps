@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>ImmuneCorps: Become a COVID-19 Immune Volunteer</h1>
-        <form method="POST" action="/check-email">
+        <form method="POST">
             <input placeholder="Enter your email" type="email" id="email" name="email">
             {% csrf_token %}
             <button type="submit" id="id_submit">Submit</button>

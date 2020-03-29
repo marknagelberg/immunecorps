@@ -14,6 +14,11 @@ def join_immunecorps(request):
     return render(request, 'volunteers/join-immunecorps.html')
 
 
+def new_volunteer(request):
+    Volunteer.objects.create(email=request.POST['email'])
+    return redirect('/volunteers/the-only-volunteer-in-the-world/')
+
+
 def check_email(request):
     return render(request, 'volunteers/check-email.html')
 
