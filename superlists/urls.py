@@ -20,8 +20,8 @@ urlpatterns = [
     path('', views.home_page, name='home'),
     path('join-immunecorps', views.join_immunecorps, name='join_immunecorps'),
     path('check-email', views.check_email, name='check_email'),
-    path('volunteer-login', views.vlogin_immunecorps, name='volunteer_login'),
+    path('volunteers/login', views.vlogin_immunecorps, name='volunteer_login'),
     path('volunteers/new', views.new_volunteer, name='new_volunteer'),
-    path('volunteers/the-only-volunteer-in-the-world/',
+    path('volunteers/<int:volunteer_id>/',
         views.volunteer_dashboard, name='volunteer_dashboard'),
 ]

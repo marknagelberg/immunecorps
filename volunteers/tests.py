@@ -29,8 +29,9 @@ class NewVolunteerTest(TestCase):
         response = self.client.post('/volunteers/new',
                 data={'email':'emailtest@example.com'})
         self.assertEqual(response.status_code, 302)
+        new_volunteer = Volunteer.objects.first()
         self.assertRedirects(response,
-            '/volunteers/the-only-volunteer-in-the-world/')
+            f'/volunteers/{new_volunteer.id}/')
 
     def test_cannot_POST_duplicate_email(self):
         pass
@@ -43,21 +44,25 @@ class NewVolunteerTest(TestCase):
 class VolunteerLoginPageTest(TestCase):
 
     def test_uses_login_template(self):
-        response = self.client.get('/volunteer-login')
+        response = self.client.get('/volunteers/login')
         self.assertTemplateUsed(response, 'volunteers/login.html')
 
     def test_redirects_after_POST(self):
-        response = self.client.post('/volunteer-login',
-                data={'email':'emailtest@example.com'})
+        email = 'emailtest@example.com'
+        new_volunteer = Volunteer.objects.create(email=email)
+        response = self.client.post('/volunteers/login',
+                data={'email':email})
         self.assertEqual(response.status_code, 302)
+        volunteer = Volunteer.objects.get(email=email)
         self.assertRedirects(response,
-            '/volunteers/the-only-volunteer-in-the-world/')
+            f'/volunteers/{volunteer.id}/')
 
 
 class VolunteerDashboardTest(TestCase):
 
     def test_uses_volunteer_dashboard_page_template(self):
-        response = self.client.get('/volunteers/the-only-volunteer-in-the-world/')
+        volunteer = Volunteer.objects.create()
+        response = self.client.get(f'/volunteers/{volunteer.id}/')
         self.assertTemplateUsed(response, 'volunteers/dashboard.html')
 
 

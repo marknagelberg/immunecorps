@@ -15,8 +15,8 @@ def join_immunecorps(request):
 
 
 def new_volunteer(request):
-    Volunteer.objects.create(email=request.POST['email'])
-    return redirect('/volunteers/the-only-volunteer-in-the-world/')
+    volunteer = Volunteer.objects.create(email=request.POST['email'])
+    return redirect(f'/volunteers/{volunteer.id}/')
 
 
 def check_email(request):
@@ -26,10 +26,11 @@ def check_email(request):
 def vlogin_immunecorps(request):
     if request.method == 'POST':
         volunteer_email = request.POST['email']
-        return redirect('/volunteers/the-only-volunteer-in-the-world/')
+        volunteer = Volunteer.objects.get(email=volunteer_email)
+        return redirect(f'/volunteers/{volunteer.id}/')
     return render(request, 'volunteers/login.html')
 
 
-def volunteer_dashboard(request):
+def volunteer_dashboard(request, volunteer_id):
     return render(request, 'volunteers/dashboard.html')
 
