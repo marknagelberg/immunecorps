@@ -1,9 +1,7 @@
-<html>
-    <head>
-        <title>ImmuneCorps</title>
-    </head>
-    <body>
-        <h1>Thank you for signing up!</h1>
-        <p id="check_email_msg">Thank you for signing up for ImmuneCorps! Confirmation email sent to {{ email }}</p>
-    </body>
-</html>
+{% extends 'volunteers/base.html' %}
+
+{% block header_text %}Thank you for signing up!{% endblock %}
+
+{% block html_body %}
+<p id="check_email_msg">Thank you for signing up for ImmuneCorps! Confirmation email sent to {{ email }}</p>
+{% endblock %}

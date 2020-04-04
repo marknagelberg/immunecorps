@@ -1,13 +1,11 @@
-<html>
-    <head>
-        <title>Join ImmuneCorps</title>
-    </head>
-    <body>
-        <h1>ImmuneCorps: Become a COVID-19 Immune Volunteer</h1>
-        <form method="POST">
-            <input placeholder="Enter your email" type="email" id="email" name="email">
-            {% csrf_token %}
-            <button type="submit" id="id_submit">Submit</button>
-        </form>
-    </body>
-</html>
+{% extends 'volunteers/base.html' %}
+
+{% block header_text %}ImmuneCorps: Become a COVID-19 Immune Volunteer{% endblock %}
+
+{% block html_body %}
+<form method="POST">
+    <input placeholder="Enter your email" type="email" id="email" name="email">
+    {% csrf_token %}
+    <button type="submit" id="id_submit">Submit</button>
+</form>
+{% endblock %}

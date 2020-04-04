@@ -1,14 +1,12 @@
-<html>
-    <head>
-        <title>ImmuneCorps</title>
-    </head>
-    <body>
-        <h1>ImmuneCorps: Become a COVID-19 Immune Volunteer</h1>
-        <form action="/volunteers/join-immunecorps">
-            <button type="submit" id="id_join_immunecorps">Join ImmuneCorps</button>
-        </form>
-        <form action="/volunteers/login">
-            <button type="submit" id="id_vlogin_immunecorps">Login to  ImmuneCorps</button>
-        </form>
-    </body>
-</html>
+{% extends 'volunteers/base.html' %}
+
+{% block header_text %}ImmuneCorps: Become a COVID-19 Immune Volunteer{% endblock %}
+
+{% block html_body %}
+<form action="/volunteers/join-immunecorps">
+    <button type="submit" id="id_join_immunecorps">Join ImmuneCorps</button>
+</form>
+<form action="/volunteers/login">
+    <button type="submit" id="id_vlogin_immunecorps">Login to  ImmuneCorps</button>
+</form>
+{% endblock %}
