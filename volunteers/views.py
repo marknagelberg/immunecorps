@@ -10,7 +10,7 @@ def join_immunecorps(request):
     if request.method == 'POST':
         new_volunteer_email = request.POST['email']
         Volunteer.objects.create(email=new_volunteer_email)
-        return redirect('/check-email')
+        return redirect('/volunteers/check-email')
     return render(request, 'volunteers/join-immunecorps.html')
 
 

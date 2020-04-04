@@ -12,7 +12,7 @@ class HomePageTest(TestCase):
 class JoinPageTest(TestCase):
 
     def test_uses_join_immunecorps_template(self):
-        response = self.client.get('/join-immunecorps')
+        response = self.client.get('/volunteers/join-immunecorps')
         self.assertTemplateUsed(response, 'volunteers/join-immunecorps.html')
 
 
@@ -69,7 +69,7 @@ class VolunteerDashboardTest(TestCase):
 class CheckEmailPageTest(TestCase):
 
     def test_uses_check_emailtemplate(self):
-        response = self.client.get('/check-email')
+        response = self.client.get('/volunteers/check-email')
         self.assertTemplateUsed(response, 'volunteers/check-email.html')
 
 
