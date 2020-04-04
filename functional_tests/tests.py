@@ -5,7 +5,7 @@ from selenium.common.exceptions import WebDriverException
 import time
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVolunteerTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -102,6 +102,26 @@ class NewVisitorTest(LiveServerTestCase):
         francis_volunteer_url = self.browser.current_url
         self.assertRegex(francis_volunteer_url, '/volunteers/.+')
         self.assertNotEqual(francis_volunteer_url, edith_volunteer_url)
+
+    def test_layout_and_styling(self):
+        # Edith goes to home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+        # She notices the join button that is nicely centred
+        join_button = self.browser.find_element_by_id('id_join_immunecorps')
+        self.assertAlmostEqual(
+            join_button.location['x'] + join_button.size['width'] / 2,
+            512,
+            delta=10
+        )
+        # She clicks the join and notices the email input box is nicely centred
+        join_button.click()
+        emailinputbox = self.browser.find_element_by_id('email')
+        self.assertAlmostEqual(
+            emailinputbox.location['x'] + emailinputbox.size['width'] / 2,
+            512,
+            delta=10
+        )
 
 
 class HealthAuthorityAdminTest(LiveServerTestCase):
